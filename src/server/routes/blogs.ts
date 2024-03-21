@@ -1,0 +1,86 @@
+import { Router } from 'express'
+import db from '../db';
+import insertBlog_tags from '../services/insertBlog_tags';
+
+const router = Router();
+
+// GET /api/blogs/id
+router.get('/:id', async (req,res) => {
+    try {
+        const id = parseInt(req.params.id, 10)
+        const blog = await db.blogs.getOneBlog(id)
+        res.json(blog)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message: 'Internal Server Error', error})
+    }
+});
+
+//GET /api/blogs/
+router.get('/', async (req,res) => {
+    try {
+        const blogs = await db.blogs.getALLBlogs()
+        res.json(blogs)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message: 'Internal Server Error', error})
+    }
+});
+
+//POST /api/blogs/
+router.post('/', async (req,res) => {
+    try {
+        const { author_id, content, title } = req.body
+        const blogResult = await db.blogs.insertBlog(author_id, content, title || '')
+        await insertBlog_tags(content, blogResult.insertId)
+        res.json({ message:'blog created', id:blogResult.insertId})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message: 'Internal Server Error', error})
+    }
+});
+
+// PUT /api/blogs/id
+router.put("/:id", async (req, res) => {
+    try {
+        const { author_id, content, title } = req.body;
+        const id = Number(req.params.id);
+        await db.blogs.updateBlog(author_id, content, title, id);
+        await insertBlog_tags(content,id)
+        res.status(200).json({ message: "Blog updated successfully" });
+    } catch (error) {
+        console.error("Error updating blog:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+// DELETE /api/blogs/id
+router.delete("/:id", async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        await db.blog_tags.deleteForBlog(id)
+        await db.blogs.deleteBlog(id);
+        res.status(200).json({ message: "Blog deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting blog:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+router.get('/blog_tags/:tag_id', async (req, res) => {
+    const tag_id = parseInt(req.params.tag_id, 10);
+
+    if (isNaN(tag_id)) {
+        return res.status(400).json({ message: "User ID must be a number" });
+    }
+
+    try {
+        const mentionedBlogs = await db.blogs.getBlog_tags(tag_id);
+        res.status(200).json(mentionedBlogs);
+    } catch (error) {
+        console.error("Error getting blog_tags:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+export default router;
