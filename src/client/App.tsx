@@ -26,8 +26,8 @@ const App = (props: AppProps) => {
 				</Container>
 			</Navbar>
 			<Routes>
-				{/* <Route path="/" element={<Home />} />
-				<Route path="/blogs/:id" element={<BlogDetails />} />
+				<Route path="/" element={<Home />} />
+				{/* <Route path="/blogs/:id" element={<BlogDetails />} />
 				<Route path="/blog" element={<ComposeBlog />} />
 				<Route path="/edit" element={<EditBlogs />} />
 				<Route path="/blog_tags" element={<UserBlog_tags />} /> */}
