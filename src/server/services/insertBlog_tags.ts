@@ -1,19 +1,19 @@
 import db from "../db";
 
-async function insertBlog_tags(body: string, blog_id: number) {
+async function insertBlog_tags(content: string, blog_id: number) {
     const blog_tagPattern = /#\w+/g;
-    const blog_tagedAuthors = body.match(blog_tagPattern);
+    const Tags = content.match(blog_tagPattern);
 
-    if (blog_tagedAuthors) {
-        const authors = await db.authors.getALLAuthors();
+    if (Tags) {
+        const tags = await db.tags.getALLTags();
 
         await db.blog_tags.deleteForBlog(blog_id);
 
-        for await (const authorBlog_tag of blog_tagedAuthors) {
-            const foundAuthor = authors.find((u) => u.handle!.toLowerCase() === authorBlog_tag.replace("#", "").toLowerCase());
+        for await (const singleTag of Tags) {
+            const foundTag = tags.find((u) => u.handle!.toLowerCase() === singleTag.replace("#", "").toLowerCase());
 
-            if (foundAuthor) {
-                await db.blog_tags.insertBlog_tag(blog_id, foundAuthor.id!);
+            if (foundTag) {
+                await db.blog_tags.insertBlog_tag(blog_id, foundTag.id!);
             }
         }
     }
