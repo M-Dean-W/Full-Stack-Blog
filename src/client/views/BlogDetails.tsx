@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { IBlogJOIN } from '../types';
 import { Card, Container } from 'react-bootstrap';
 import { fetchData } from '../services/fetchData';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
-interface HomeProps { }
+interface BlogDetailsProps { }
 
-const Home = (props: HomeProps) => {
+const BlogDetails = (props: BlogDetailsProps) => {
 
   const [blogs, setBlogs] = useState<IBlogJOIN[]>([])
+  const { id } = useParams()
 
   useEffect(() => {
-    fetchData('/api/blogs')
+    fetchData(`/api/blogs/${id}`)
       .then(blogs => setBlogs(blogs))
-  },[])
+  },[id])
 
   return (
     <Container>
@@ -32,7 +33,6 @@ const Home = (props: HomeProps) => {
                 <Card.Text >
                   {blog.content}
                 </Card.Text>
-                <Link to={`blogs/${blog.id}`} className='btn btn-danger'>Details</Link>
               </Card.Body>
             </Card>
           ))}
@@ -42,4 +42,4 @@ const Home = (props: HomeProps) => {
   );
 };
 
-export default Home;
+export default BlogDetails;

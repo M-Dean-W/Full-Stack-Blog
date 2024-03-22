@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
+import Home from './views/Home';
+import BlogDetails from './views/BlogDetails';
 
 interface AppProps { }
 
@@ -14,7 +16,7 @@ const App = (props: AppProps) => {
 		<BrowserRouter>
 			<Navbar bg="info" expand="lg" >
 			<Container fluid>
-				<Navbar.Brand href="/">The Williamson Nook</Navbar.Brand>
+				<Navbar.Brand>The Williamson Nook</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
@@ -27,8 +29,8 @@ const App = (props: AppProps) => {
 			</Navbar>
 			<Routes>
 				<Route path="/" element={<Home />} />
-				{/* <Route path="/blogs/:id" element={<BlogDetails />} />
-				<Route path="/blog" element={<ComposeBlog />} />
+				<Route path="/blogs/:id" element={<BlogDetails />} />
+				{/* <Route path="/blog" element={<ComposeBlog />} />
 				<Route path="/edit" element={<EditBlogs />} />
 				<Route path="/blog_tags" element={<UserBlog_tags />} /> */}
 			</Routes>
