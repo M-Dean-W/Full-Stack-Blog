@@ -5,6 +5,8 @@ import { Nav } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Home from './views/Home';
 import BlogDetails from './views/BlogDetails';
+import ComposeBlog from './views/ComposeBlog';
+import EditBlog from './views/EditBlogs';
 
 interface AppProps { }
 
@@ -30,9 +32,8 @@ const App = (props: AppProps) => {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/blogs/:id" element={<BlogDetails />} />
-				{/* <Route path="/blog" element={<ComposeBlog />} />
-				<Route path="/edit" element={<EditBlogs />} />
-				<Route path="/blog_tags" element={<UserBlog_tags />} /> */}
+				<Route path="/blog" element={<ComposeBlog />} />
+				<Route path="/edit" element={<EditBlog />} />
 			</Routes>
 		</BrowserRouter>
 		

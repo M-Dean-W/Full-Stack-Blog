@@ -2,6 +2,7 @@ export interface IBlog {
     id: number;
     title: string; 
     content: string; 
+    author_id: number;
     createdAt: string; 
 }
 

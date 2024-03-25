@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IBlogJOIN } from '../types';
 import { Card, Container } from 'react-bootstrap';
 import { fetchData } from '../services/fetchData';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 interface BlogDetailsProps { }
@@ -15,7 +15,7 @@ const BlogDetails = (props: BlogDetailsProps) => {
   useEffect(() => {
     fetchData(`/api/blogs/${id}`)
       .then(blogs => setBlogs(blogs))
-  },[id])
+  }, [id])
 
   return (
     <Container>

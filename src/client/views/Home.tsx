@@ -18,8 +18,8 @@ const Home = (props: HomeProps) => {
 
   return (
     <Container>
-      <div className="row justify-content-around p-3">
-        <div className='col-sm-3 col-md-6'>
+      <div className="row justify-content-around p-3" >
+        <div className='col-sm-3 col-md-6' >
           {blogs.map(blog => (
             <Card key={blog.id} className=" bg-light rounded-3 mb-3 mt-2">
               <Card.Title className='text-center mt-2'>
@@ -29,7 +29,7 @@ const Home = (props: HomeProps) => {
                 by {blog.full_name}
               </Card.Subtitle>
               <Card.Body>
-                <Card.Text >
+                <Card.Text className='text-truncate' style={{maxWidth: 150}} >
                   {blog.content}
                 </Card.Text>
                 <Link to={`blogs/${blog.id}`} className='btn btn-danger'>Details</Link>
