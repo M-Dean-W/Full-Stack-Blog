@@ -59,7 +59,7 @@ const ComposeBlog = (props: ComposeBlogProps) => {
                                 </Form.Select>
                                 <Form.Group className="mb-3 mt-3" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Blog Title:</Form.Label>
-                                    <Form.Control type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
+                                    <Form.Control className='bg-light' type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label style={{ fontSize: '1.5em' }}>Blog Content:</Form.Label>
