@@ -11,7 +11,13 @@ export interface IAuthor {
     full_name: string;
     email: string;
 }
+
+export interface ITags {
+    id:number;
+    tag_name:string;
+}
   
 export interface IBlogJOIN extends IBlog {
     full_name:string;
+    tag_name:string;
 }

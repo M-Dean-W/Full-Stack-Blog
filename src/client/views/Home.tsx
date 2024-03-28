@@ -21,7 +21,7 @@ const Home = (props: HomeProps) => {
       <Row><h1>Most Recent Blogs:</h1></Row>
       <Row>
         <CardGroup>
-          {blogs.map(blog => (
+          {blogs.slice(0,5).map(blog => (
             <Card key={blog.id} className=" bg-primary rounded-3 m-2 p-2 ">
               <Card.Title className='text-center mt-2'>
                 {blog.title}
@@ -41,7 +41,7 @@ const Home = (props: HomeProps) => {
       </Row>
       <Row className='mt-2'><h1>All Blogs:</h1></Row>
       <Row className='mt-2 mb-5'>
-        {blogs.map(blog => (
+        {blogs.slice(5).map(blog => (
           <ListGroup key={blog.id}>
             <ListGroup.Item variant='primary' as="li" className="d-flex justify-content-between align-items-start">
               <div className="ms-2 me-auto">

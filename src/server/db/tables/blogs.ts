@@ -10,7 +10,7 @@ export interface IBlogsRow extends RowDataPacket {
 }
 
 export function getALLBlogs() {
-    return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id;')
+    return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id ORDER BY id DESC;')
 }
 
 export function getOneBlog(id:number) {
@@ -29,6 +29,6 @@ export function deleteBlog(id:number) {
     return ModifyQuery('DELETE FROM blogs WHERE id = ?;', [id])
 }
 
-export function getBlog_tags(author_id:number) {
-    return SelectQuery<IBlogsRow>('SELECT b.*, a.full_name FROM blogs b JOIN authors a ON a.author_id = a.id JOIN blog_tags t ON t.blog_id = b.id  WHERE t.author_id = ?', [author_id])
-}
+// export function getBlog_tags(:) {
+//     return SelectQuery<IBlogsRow>('', [])
+// }
