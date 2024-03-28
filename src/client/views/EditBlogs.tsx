@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { fetchData } from '../services/fetchData';
-import { Card, Container } from 'react-bootstrap';
+import { Button, Card, Container } from 'react-bootstrap';
 import { IBlogJOIN } from '../types';
+
 
 
 interface EditBlogProps { }
@@ -43,10 +44,8 @@ const EditBlog = (props: EditBlogProps) => {
 
     return (
         <Container>
-            <div className="row justify-content-around p-3">
-                <div className='col-sm-3 col-md-6'>
                     {blogs.map(blog => (
-                        <Card key={blog.id} className=" bg-light rounded-3 mb-3 mt-2">
+                        <Card key={blog.id} className=" bg-primary rounded-3 m-3">
                             <Card.Title className='text-center mt-3'>
                                 {blog.title}
                             </Card.Title>
@@ -56,14 +55,12 @@ const EditBlog = (props: EditBlogProps) => {
                             <Card.Body>
                                 <Card.Text >
                                     <textarea className='form-control bg-light' value={blog.id === selectedBlog?.id ? selectedBlog?.content : blog.content} onChange={(e) => blog.id === selectedBlog?.id ? setSelectedBlog({ ...selectedBlog, content: e.target.value }) : null} readOnly={blog.id !== selectedBlog?.id} />
-                                    {blog.id === selectedBlog?.id ? <button onClick={handleSubmitEdit} className='bg-primary'>Submit</button> : <button onClick={() => setupEdit(blog)}>Edit Content</button>}
+                                    {blog.id === selectedBlog?.id ? <Button onClick={handleSubmitEdit} className='mt-2 bg-secondary'>Submit</Button> : <Button className='mt-2 bg-light' onClick={() => setupEdit(blog)}>Edit Content</Button>}
                                 </Card.Text>
                             </Card.Body>
-                            <button onClick={() => handleDelete(blog.id)} className='bg-danger'>Delete Blog</button>
+                            <Button onClick={() => handleDelete(blog.id)} className='bg-danger '>Delete Blog</Button>
                         </Card>
-                    ))};
-                </div>
-            </div>
+                    ))}
         </Container>
     );
 };

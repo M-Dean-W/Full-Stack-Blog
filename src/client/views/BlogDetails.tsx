@@ -19,10 +19,8 @@ const BlogDetails = (props: BlogDetailsProps) => {
 
   return (
     <Container>
-      <div className="row justify-content-around p-3">
-        <div className='col-sm-3 col-md-6'>
           {blogs.map(blog => (
-            <Card key={blog.id} className=" bg-light rounded-3 mb-3 mt-2">
+            <Card key={blog.id} className=" bg-primary rounded-3 m-3">
               <Card.Title className='text-center mt-2'>
                 {blog.title}
               </Card.Title>
@@ -36,8 +34,6 @@ const BlogDetails = (props: BlogDetailsProps) => {
               </Card.Body>
             </Card>
           ))}
-        </div>
-      </div>
     </Container>
   );
 };

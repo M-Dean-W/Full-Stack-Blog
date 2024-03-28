@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { IBlogJOIN } from '../types';
-import { Card, Container } from 'react-bootstrap';
+import { Container, Row, Col, Card, CardGroup, CardFooter } from 'react-bootstrap';
 import { fetchData } from '../services/fetchData';
 import { Link } from 'react-router-dom';
-
+import ListGroup from 'react-bootstrap/ListGroup';
 
 interface HomeProps { }
 
@@ -14,14 +14,15 @@ const Home = (props: HomeProps) => {
   useEffect(() => {
     fetchData('/api/blogs')
       .then(blogs => setBlogs(blogs))
-  },[])
+  }, [])
 
   return (
     <Container>
-      <div className="row justify-content-around p-3" >
-        <div className='col-sm-3 col-md-6' >
+      <Row><h1>Most Recent Blogs:</h1></Row>
+      <Row>
+        <CardGroup>
           {blogs.map(blog => (
-            <Card key={blog.id} className=" bg-light rounded-3 mb-3 mt-2">
+            <Card key={blog.id} className=" bg-primary rounded-3 m-2 p-2 ">
               <Card.Title className='text-center mt-2'>
                 {blog.title}
               </Card.Title>
@@ -29,16 +30,30 @@ const Home = (props: HomeProps) => {
                 by {blog.full_name}
               </Card.Subtitle>
               <Card.Body>
-                <Card.Text className='text-truncate' style={{maxWidth: 150}} >
+                <Card.Text className='text-truncate' style={{ maxWidth: 150 }}>
                   {blog.content}
                 </Card.Text>
-                <Link to={`blogs/${blog.id}`} className='btn btn-danger'>Details</Link>
               </Card.Body>
+              <Link to={`blogs/${blog.id}`} className='text-center'> Full Blog </Link>
             </Card>
           ))}
-        </div>
-      </div>
-    </Container>
+        </CardGroup>
+      </Row>
+      <Row className='mt-2'><h1>All Blogs:</h1></Row>
+      <Row className='mt-2 mb-5'>
+        {blogs.map(blog => (
+          <ListGroup key={blog.id}>
+            <ListGroup.Item variant='primary' as="li" className="d-flex justify-content-between align-items-start">
+              <div className="ms-2 me-auto">
+                <div className="fw-bold">{blog.title} </div>
+                by {blog.full_name}
+              </div>
+              <Link to={`blogs/${blog.id}`} className='btn btn-primary justify-content-end'>Details</Link>
+            </ListGroup.Item>
+          </ListGroup>
+        ))}
+      </Row>
+    </Container >
   );
 };
 

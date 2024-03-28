@@ -16,7 +16,7 @@ const App = (props: AppProps) => {
 	return (
 		
 		<BrowserRouter>
-			<Navbar bg="info" expand="lg" >
+			<Navbar bg="primary" expand="lg" >
 			<Container fluid>
 				<Navbar.Brand>The Williamson Nook</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />

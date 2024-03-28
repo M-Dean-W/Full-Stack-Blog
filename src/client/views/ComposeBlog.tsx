@@ -45,20 +45,18 @@ const ComposeBlog = (props: ComposeBlogProps) => {
 
     return (
         <Container>
-            <div className="row justify-content-around p-3">
-                <div className='col-sm-3'>
-                    <Card className='bg-info' id='blog-box'>
+                    <Card className='m-4 bg-primary' id='blog-box'>
                         <Card.Body>
                             <Card.Title className='p-2'>
                             </Card.Title>
                             <Form onSubmit={handleFormSubmit}>
-                                <Form.Select size='lg' className='bg-danger' value={authorID ?? ''} onChange={(e) => setAuthorID(Number(e.target.value) || null)}>
+                                <Form.Select size='lg' className='bg-light' value={authorID ?? ''} onChange={(e) => setAuthorID(Number(e.target.value) || null)}>
                                     <option>Select Author</option>
                                     {authors.map(author => (
                                         <option key={author.id} value={author.id}>{author.full_name}</option>))}
                                 </Form.Select>
                                 <Form.Group className="mb-3 mt-3" controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Blog Title:</Form.Label>
+                                    <Form.Label style={{ fontSize: '1.5em' }}>Blog Title:</Form.Label>
                                     <Form.Control className='bg-light' type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
                                 </Form.Group>
                                 <Form.Group className="mb-3">
@@ -68,14 +66,17 @@ const ComposeBlog = (props: ComposeBlogProps) => {
                                         as="textarea"
                                         value={content}
                                         onChange={(e) => setContent(e.target.value)}
-                                        rows={3} />
+                                        rows={20} />
                                 </Form.Group>
-                                <Button type='submit' variant='danger'>Blog it!</Button>
+                                {/* <Form.Select className='bg-light' value={authorID ?? ''} onChange={(e) => setAuthorID(Number(e.target.value) || null)}>
+                                    <option>Tags</option>
+                                    {authors.map(author => (
+                                        <option key={author.id} value={author.id}>{author.full_name}</option>))}
+                                </Form.Select> */}
+                                <Button type='submit' variant='secondary'>Submit</Button>
                             </Form>
                         </Card.Body>
                     </Card>
-                </div>
-            </div>
         </Container>
     );
 };
