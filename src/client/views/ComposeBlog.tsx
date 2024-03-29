@@ -42,7 +42,6 @@ const ComposeBlog = (props: ComposeBlogProps) => {
     };
 
 
-
     return (
         <Container>
                     <Card className='m-4 bg-primary' id='blog-box'>
@@ -68,11 +67,6 @@ const ComposeBlog = (props: ComposeBlogProps) => {
                                         onChange={(e) => setContent(e.target.value)}
                                         rows={20} />
                                 </Form.Group>
-                                {/* <Form.Select className='bg-light' value={authorID ?? ''} onChange={(e) => setAuthorID(Number(e.target.value) || null)}>
-                                    <option>Tags</option>
-                                    {authors.map(author => (
-                                        <option key={author.id} value={author.id}>{author.full_name}</option>))}
-                                </Form.Select> */}
                                 <Button type='submit' variant='secondary'>Submit</Button>
                             </Form>
                         </Card.Body>

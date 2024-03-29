@@ -9,7 +9,13 @@ router.get('/:id', async (req,res) => {
     try {
         const id = parseInt(req.params.id, 10)
         const blog = await db.blogs.getOneBlog(id)
-        res.json(blog)
+        const muchBetterBlog = blog.map((blog) => {
+            const tags = blog.tagsID ? blog.tagsID.split(',').map((tid:number, index:number) => ({ id: tid, name: blog.TagNames.split(',')[index] })) : []  
+            delete blog.tagsID;
+            delete blog.TagNames;
+            return { ...blog, tags }
+          });
+        res.json(muchBetterBlog)
     } catch (error) {
         console.log(error)
         res.status(500).json({message: 'Internal Server Error', error})
@@ -67,20 +73,5 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
-router.get('/blog_tags/:tag_id', async (req, res) => {
-    const tag_id = parseInt(req.params.tag_id, 10);
-
-    if (isNaN(tag_id)) {
-        return res.status(400).json({ message: "User ID must be a number" });
-    }
-
-    try {
-        const mentionedBlogs = await db.blogs.getBlog_tags(tag_id);
-        res.status(200).json(mentionedBlogs);
-    } catch (error) {
-        console.error("Error getting blog_tags:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
-});
 
 export default router;

@@ -14,7 +14,7 @@ export function getALLBlogs() {
 }
 
 export function getOneBlog(id:number) {
-    return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id WHERE blogs.id = ?;', [id])
+    return SelectQuery<IBlogsRow>('SELECT blogs.*, GROUP_CONCAT(tags.id) as tagsID, GROUP_CONCAT(tags.tag_name) as TagNames, authors.full_name FROM blogs LEFT JOIN authors ON blogs.author_id = authors.id LEFT JOIN blog_tags ON blog_tags.blog_id = blogs.id LEFT JOIN tags ON blog_tags.tag_id = tags.id WHERE blogs.id = ? GROUP BY blogs.id;', [id])
 }
 
 export function insertBlog(author_id:number, content:string, title:string) {
@@ -29,6 +29,6 @@ export function deleteBlog(id:number) {
     return ModifyQuery('DELETE FROM blogs WHERE id = ?;', [id])
 }
 
-// export function getBlog_tags(:) {
-//     return SelectQuery<IBlogsRow>('', [])
-// }
+export function getBlog_tags(id:number) {
+    return SelectQuery<IBlogsRow>('SELECT blogs.*, tags.tag_name FROM blogs JOIN blog_tags ON blog_tags.blog_id = blogs.id JOIN tags ON blog_tags.tag_id = tags.id WHERE blogs.id = ?;', [id])
+}
