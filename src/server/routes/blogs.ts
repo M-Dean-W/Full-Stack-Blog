@@ -4,6 +4,17 @@ import insertBlog_tags from '../services/insertBlog_tags';
 
 const router = Router();
 
+//GET /api/blogs/latest
+router.get('/latest', async (req,res) => {
+    try {
+        const blogs = await db.blogs.getLatestBlogs()
+        res.json(blogs)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message: 'Internal Server Error', error})
+    }
+});
+
 // GET /api/blogs/id
 router.get('/:id', async (req,res) => {
     try {
@@ -22,10 +33,13 @@ router.get('/:id', async (req,res) => {
     }
 });
 
+
+
 //GET /api/blogs/
 router.get('/', async (req,res) => {
     try {
-        const blogs = await db.blogs.getALLBlogs()
+        const offset = req.query.offset
+        const blogs = await db.blogs.getALLBlogs(Number(offset))
         res.json(blogs)
     } catch (error) {
         console.log(error)

@@ -10,11 +10,29 @@ interface HomeProps { }
 const Home = (props: HomeProps) => {
 
   const [blogs, setBlogs] = useState<IBlogJOIN[]>([])
+  const [paginatedBlogs, setPaginatedBlogs] = useState<IBlogJOIN[]>([])
+  const [offset, setOffset]= useState(0)
 
   useEffect(() => {
-    fetchData('/api/blogs')
-      .then(blogs => setBlogs(blogs))
+    fetchData('/api/blogs/latest').then((blogs) => {
+      setBlogs(blogs)
+    })
   }, [])
+
+  useEffect(() => {
+    fetchData(`/api/blogs?offset=${offset}`)
+      .then((blogs) => {
+        if (offset === 0) {
+          setPaginatedBlogs(blogs.slice(5))
+        } else {
+          setPaginatedBlogs(blogs)
+        }
+      })
+  }, [offset])
+
+  const handlePagination = (amount:number) => {
+    setOffset(offset + amount)
+  }
 
   return (
     <Container>
@@ -39,9 +57,12 @@ const Home = (props: HomeProps) => {
           ))}
         </CardGroup>
       </Row>
-      <Row className='mt-2'><h1>All Blogs:</h1></Row>
+      <Row className='mt-2'>
+        <h1>All Blogs:</h1>
+        <h2>{offset === 0 && <span onClick={() => handlePagination(-10)} className='btn btn-primary m-2'>Previous 10</span>}<span onClick={() => handlePagination(10)} className='btn btn-primary m-2'>Next 10 </span></h2>
+        </Row>
       <Row className='mt-2 mb-5'>
-        {blogs.slice(5).map(blog => (
+        {paginatedBlogs.map(blog => (
           <ListGroup key={blog.id}>
             <ListGroup.Item variant='primary' as="li" className="d-flex justify-content-between align-items-start">
               <div className="ms-2 me-auto">
