@@ -17,6 +17,10 @@ export function getALLBlogs(offset:number) {
     return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id ORDER BY id DESC LIMIT 10 OFFSET ?;', [offset])
 }
 
+export function blogsCount () {
+    return SelectQuery<{ count:number }>('SELECT COUNT (*) as count FROM blogs;')
+}
+
 export function getOneBlog(id:number) {
     return SelectQuery<IBlogsRow>('SELECT blogs.*, GROUP_CONCAT(tags.id) as tagsID, GROUP_CONCAT(tags.tag_name) as TagNames, authors.full_name FROM blogs LEFT JOIN authors ON blogs.author_id = authors.id LEFT JOIN blog_tags ON blog_tags.blog_id = blogs.id LEFT JOIN tags ON blog_tags.tag_id = tags.id WHERE blogs.id = ? GROUP BY blogs.id;', [id])
 }

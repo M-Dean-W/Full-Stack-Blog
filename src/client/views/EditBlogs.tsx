@@ -9,7 +9,7 @@ interface EditBlogProps { }
 
 const EditBlog = (props: EditBlogProps) => {
     const [blogs, setBlogs] = useState<IBlogJOIN[]>([])
-
+    
 
     const [selectedBlog, setSelectedBlog] = useState<IBlogJOIN | null>(null)
 

@@ -40,7 +40,8 @@ router.get('/', async (req,res) => {
     try {
         const offset = req.query.offset
         const blogs = await db.blogs.getALLBlogs(Number(offset))
-        res.json(blogs)
+        const [aggregated] = await db.blogs.blogsCount()
+        res.json({ blogs, count: aggregated.count})
     } catch (error) {
         console.log(error)
         res.status(500).json({message: 'Internal Server Error', error})

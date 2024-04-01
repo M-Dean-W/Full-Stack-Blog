@@ -12,6 +12,7 @@ const Home = (props: HomeProps) => {
   const [blogs, setBlogs] = useState<IBlogJOIN[]>([])
   const [paginatedBlogs, setPaginatedBlogs] = useState<IBlogJOIN[]>([])
   const [offset, setOffset]= useState(0)
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
     fetchData('/api/blogs/latest').then((blogs) => {
@@ -21,16 +22,20 @@ const Home = (props: HomeProps) => {
 
   useEffect(() => {
     fetchData(`/api/blogs?offset=${offset}`)
-      .then((blogs) => {
+      .then((data) => {
         if (offset === 0) {
-          setPaginatedBlogs(blogs.slice(5))
+          setPaginatedBlogs(data.blogs.slice(5))
         } else {
-          setPaginatedBlogs(blogs)
+          setPaginatedBlogs(data.blogs)
         }
+        setCount(data.count)
       })
   }, [offset])
 
   const handlePagination = (amount:number) => {
+    if(offset + amount <0) return
+    if(offset + amount > count) return
+    
     setOffset(offset + amount)
   }
 
@@ -59,7 +64,10 @@ const Home = (props: HomeProps) => {
       </Row>
       <Row className='mt-2'>
         <h1>All Blogs:</h1>
-        <h2>{offset === 0 && <span onClick={() => handlePagination(-10)} className='btn btn-primary m-2'>Previous 10</span>}<span onClick={() => handlePagination(10)} className='btn btn-primary m-2'>Next 10 </span></h2>
+        <h2>
+          {offset !== 0 && (<span onClick={() => handlePagination(-10)} className='btn btn-primary m-2'>Previous Blogs</span>)}{""}
+          {offset + 10 < count && (<span onClick={() => handlePagination(10)} className='btn btn-primary m-2'>More Blogs</span>)}
+        </h2>
         </Row>
       <Row className='mt-2 mb-5'>
         {paginatedBlogs.map(blog => (
