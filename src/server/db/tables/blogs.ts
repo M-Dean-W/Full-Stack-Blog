@@ -9,12 +9,12 @@ export interface IBlogsRow extends RowDataPacket {
     created_at:Date;
 }
 
-export function  getLatestBlogs () {
+export function getLatestBlogs () {
     return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id ORDER BY id DESC LIMIT 5;')
 }
 
 export function getALLBlogs(offset:number) {
-    return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id ORDER BY id DESC LIMIT 10 OFFSET ?')
+    return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id ORDER BY id DESC LIMIT 10 OFFSET ?;', [offset])
 }
 
 export function getOneBlog(id:number) {
