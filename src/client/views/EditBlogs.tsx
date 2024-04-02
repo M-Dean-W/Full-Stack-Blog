@@ -27,7 +27,7 @@ const EditBlog = (props: EditBlogProps) => {
     }
 
     function getBlogs() {
-        fetchData(`/api/blogs?limit=&offset=${offset}`)
+        fetchData(`/api/blogs?limit=1000000&offset=${offset}`)
             .then((data) => setBlogs(data.blogs))
     }
 
