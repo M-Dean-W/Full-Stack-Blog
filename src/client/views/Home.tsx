@@ -21,7 +21,7 @@ const Home = (props: HomeProps) => {
   }, [])
 
   useEffect(() => {
-    fetchData(`/api/blogs?offset=${offset}`)
+    fetchData(`/api/blogs?limit=10&offset=${offset}`)
       .then((data) => {
         if (offset === 0) {
           setPaginatedBlogs(data.blogs.slice(5))

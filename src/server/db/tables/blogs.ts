@@ -13,8 +13,8 @@ export function getLatestBlogs () {
     return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id ORDER BY id DESC LIMIT 5;')
 }
 
-export function getALLBlogs(offset:number) {
-    return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id ORDER BY id DESC LIMIT 10 OFFSET ?;', [offset])
+export function getALLBlogs(limit:number, offset:number) {
+    return SelectQuery<IBlogsRow>('SELECT authors.full_name, blogs.* FROM blogs JOIN authors ON blogs.author_id = authors.id ORDER BY id DESC LIMIT ? OFFSET ?;', [limit, offset])
 }
 
 export function blogsCount () {

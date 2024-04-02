@@ -39,7 +39,8 @@ router.get('/:id', async (req,res) => {
 router.get('/', async (req,res) => {
     try {
         const offset = req.query.offset
-        const blogs = await db.blogs.getALLBlogs(Number(offset))
+        const limit = req.query.limit
+        const blogs = await db.blogs.getALLBlogs(Number(limit),Number(offset))
         const [aggregated] = await db.blogs.blogsCount()
         res.json({ blogs, count: aggregated.count})
     } catch (error) {

@@ -9,7 +9,7 @@ interface EditBlogProps { }
 
 const EditBlog = (props: EditBlogProps) => {
     const [blogs, setBlogs] = useState<IBlogJOIN[]>([])
-    
+    const [offset, setOffset]= useState(0)
 
     const [selectedBlog, setSelectedBlog] = useState<IBlogJOIN | null>(null)
 
@@ -27,8 +27,8 @@ const EditBlog = (props: EditBlogProps) => {
     }
 
     function getBlogs() {
-        fetchData('/api/blogs')
-            .then(blogs => setBlogs(blogs))
+        fetchData(`/api/blogs?limit=&offset=${offset}`)
+            .then((data) => setBlogs(data.blogs))
     }
 
     useEffect(() => {
