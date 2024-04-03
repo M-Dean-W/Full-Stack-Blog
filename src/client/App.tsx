@@ -7,6 +7,7 @@ import Home from './views/Home';
 import BlogDetails from './views/BlogDetails';
 import ComposeBlog from './views/ComposeBlog';
 import EditBlog from './views/EditBlogs';
+import ContactMe from './views/ContactMe';
 
 interface AppProps { }
 
@@ -25,6 +26,7 @@ const App = (props: AppProps) => {
 						<Nav.Link as={NavLink} to="/">Home</Nav.Link>
 						<Nav.Link as={NavLink} to="/blog">Write a Blog</Nav.Link>
 						<Nav.Link as={NavLink} to="/edit">Edit Blogs(Admin)</Nav.Link>
+						<Nav.Link as={NavLink} to="/email">Contact Me</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 				</Container>
@@ -34,6 +36,7 @@ const App = (props: AppProps) => {
 				<Route path="/blogs/:id" element={<BlogDetails />} />
 				<Route path="/blog" element={<ComposeBlog />} />
 				<Route path="/edit" element={<EditBlog />} />
+				<Route path="/email" element={<ContactMe />} />
 			</Routes>
 		</BrowserRouter>
 		

@@ -21,6 +21,12 @@ export interface IBlogJOIN extends IBlog {
     full_name:string;
 }
 
+export interface IEmail {
+    from: string,
+    subject: string,
+    message: string
+}
+
 export interface IBlogWithContext {
     id: number;
     title: string;
