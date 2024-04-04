@@ -8,6 +8,8 @@ import BlogDetails from './views/BlogDetails';
 import ComposeBlog from './views/ComposeBlog';
 import EditBlog from './views/EditBlogs';
 import ContactMe from './views/ContactMe';
+import SaveBones from './views/SaveBones';
+import Thanks from './views/Thanks';
 
 interface AppProps { }
 
@@ -27,6 +29,7 @@ const App = (props: AppProps) => {
 						<Nav.Link as={NavLink} to="/blog">Write a Blog</Nav.Link>
 						<Nav.Link as={NavLink} to="/edit">Edit Blogs(Admin)</Nav.Link>
 						<Nav.Link as={NavLink} to="/email">Contact Me</Nav.Link>
+						<Nav.Link as={NavLink} to="/donate">Save Bones!</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 				</Container>
@@ -37,6 +40,8 @@ const App = (props: AppProps) => {
 				<Route path="/blog" element={<ComposeBlog />} />
 				<Route path="/edit" element={<EditBlog />} />
 				<Route path="/email" element={<ContactMe />} />
+				<Route path="/donate" element={<SaveBones />} />
+				<Route path="/thank-you" element={<Thanks />} />
 			</Routes>
 		</BrowserRouter>
 		

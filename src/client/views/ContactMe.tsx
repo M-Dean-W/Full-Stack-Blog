@@ -42,7 +42,7 @@ const ContactMe = (props: ContactMeProps) => {
                         Contact Me
                     </Card.Title>
                     <Form onSubmit={handleFormSubmit}>
-                        <Form.Group className="mb-3 mt-3" controlId="exampleForm.ControlInput1">
+                        <Form.Group className="mb-3 mt-3" controlId="emailForm.ControlInput1">
                             <Form.Label style={{ fontSize: '1.5em' }}>Your Email:</Form.Label>
                             <Form.Control className='bg-light' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
                         </Form.Group>
