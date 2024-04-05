@@ -48,6 +48,7 @@ const SaveBones = (props: SaveBonesProps) => {
         return (
             <Container>
                 <Card className='m-4 bg-primary'>
+                <Card.Img variant="top" src="/images/Sad_Bones.jpg" />
                     <Form onSubmit={handlePaymentIntent}>
                         <Form.Group className="mb-3 mt-3" controlId="emailForm.ControlInput1">
                             <Form.Label style={{ fontSize: '1.5em' }}>How much you would like to donate:</Form.Label>

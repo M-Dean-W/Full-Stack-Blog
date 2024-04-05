@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Card } from "react-bootstrap";
-import happyBones from "../images/Bones_curious.jpg"
+
 
 
 interface ThanksProps { }
@@ -8,8 +8,8 @@ interface ThanksProps { }
 const Thanks = (props: ThanksProps) => {
     return (
         <Container>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={happyBones} />
+            <Card className=" bg-primary rounded-3 m-3" style={{ width: '25em' }}>
+                <Card.Img variant="top" src="/images/Bones_curious.jpg" />
                 <Card.Body>
                     <Card.Title>Thank you for saving Bones</Card.Title>
                     <Card.Text>

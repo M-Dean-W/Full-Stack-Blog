@@ -1,9 +1,6 @@
-// client.prod.mjs
 import * as esbuild from 'esbuild';
 import * as sass from 'sass';
 import { sassPlugin } from 'esbuild-sass-plugin';
-import inlineImage from "esbuild-plugin-inline-image";
-
 
 try {
     await esbuild.build({
@@ -20,8 +17,7 @@ try {
                 type: 'style',
                 quietDeps: true,
                 logger: sass.Logger.silent
-            }),
-            inlineImage()
+            })
         ]
     });
 
