@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Card } from "react-bootstrap";
+import happyBones from "../images/Bones_curious.jpg"
+
 
 interface ThanksProps { }
 
@@ -7,7 +9,7 @@ const Thanks = (props: ThanksProps) => {
     return (
         <Container>
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Img variant="top" src={happyBones} />
                 <Card.Body>
                     <Card.Title>Thank you for saving Bones</Card.Title>
                     <Card.Text>
