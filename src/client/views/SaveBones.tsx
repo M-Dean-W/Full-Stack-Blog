@@ -49,6 +49,11 @@ const SaveBones = (props: SaveBonesProps) => {
             <Container>
                 <Card className='m-4 bg-primary'>
                 <Card.Img variant="top" src="/images/Sad_Bones.jpg" />
+                <Card.Body>
+                    <Card.Text style={{ fontSize: '1.2em' }}> 
+                      Only you can save Bones by donating money for unlimited treats...Just look how sad he is that he can't eat treats all the time.
+                    </Card.Text>
+                
                     <Form onSubmit={handlePaymentIntent}>
                         <Form.Group className="mb-3 mt-3" controlId="emailForm.ControlInput1">
                             <Form.Label style={{ fontSize: '1.5em' }}>How much you would like to donate:</Form.Label>
@@ -59,6 +64,7 @@ const SaveBones = (props: SaveBonesProps) => {
                         </Form.Group>
                         <Button type='submit' variant='secondary'>Submit</Button>
                     </Form>
+                    </Card.Body>
                 </Card>
             </Container>
         );
