@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import db from '../db';
 import insertBlog_tags from '../services/insertBlog_tags';
+import tokenCheck from '../middleware/tokenCheck';
 
 const router = Router();
 
@@ -50,7 +51,7 @@ router.get('/', async (req,res) => {
 });
 
 //POST /api/blogs/
-router.post('/', async (req,res) => {
+router.post('/', tokenCheck, async (req,res) => {
     try {
         const { author_id, content, title } = req.body
         const blogResult = await db.blogs.insertBlog(author_id, content, title || '')
@@ -63,7 +64,7 @@ router.post('/', async (req,res) => {
 });
 
 // PUT /api/blogs/id
-router.put("/:id", async (req, res) => {
+router.put("/:id", tokenCheck, async (req, res) => {
     try {
         const { author_id, content, title } = req.body;
         const id = Number(req.params.id);
@@ -77,7 +78,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE /api/blogs/id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", tokenCheck, async (req, res) => {
     try {
         const id = Number(req.params.id);
         await db.blog_tags.deleteForBlog(id)

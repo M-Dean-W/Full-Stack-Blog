@@ -2,6 +2,7 @@ import { Router } from 'express'
 import Mailgun from 'mailgun.js';
 import FormData from 'form-data';
 import config from '../config';
+import tokenCheck from '../middleware/tokenCheck';
 
 const mailgun = new Mailgun(FormData).client({
     username:'api',
@@ -11,7 +12,7 @@ const mailgun = new Mailgun(FormData).client({
 const router = Router();
 
 //POST /api/email/
-router.post('/', async (req,res) => {
+router.post('/', tokenCheck, async (req,res) => {
     try {
         const newEmail = { ...req.body }
         const result = await mailgun.messages.create(config.mailgun.domain, {

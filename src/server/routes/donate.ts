@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import Stripe from 'stripe';
 import config from '../config';
+import tokenCheck from '../middleware/tokenCheck';
 
 const stripe = new Stripe(config.stripe.apiKey, {
     apiVersion: '2023-10-16',
@@ -10,7 +11,7 @@ const stripe = new Stripe(config.stripe.apiKey, {
 const router = Router();
 
 //POST /api/donate/payment-intent
-router.post('/payment-intent', async (req, res) => {
+router.post('/payment-intent', tokenCheck, async (req, res) => {
     
     try {
         const amount = req.body.amount;
