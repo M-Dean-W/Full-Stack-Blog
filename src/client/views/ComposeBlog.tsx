@@ -17,6 +17,11 @@ const ComposeBlog = (props: ComposeBlogProps) => {
     const [authorID, setAuthorID] = useState<number | null>(null);
     const [authors, setAuthors] = useState<{ id: number; full_name: string }[]>([]);
     const navigate = useNavigate()
+    const token = localStorage.getItem('token')
+
+    if (!token) {
+        navigate('/login')
+    }
 
     useEffect(() => {
         fetchData('/api/authors')

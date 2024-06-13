@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchData } from '../services/fetchData';
 import { Button, Card, Container } from 'react-bootstrap';
 import { IBlogJOIN } from '../types';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,6 +13,12 @@ const EditBlog = (props: EditBlogProps) => {
     const [offset, setOffset]= useState(0)
 
     const [selectedBlog, setSelectedBlog] = useState<IBlogJOIN | null>(null)
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+
+    if (!token) {
+        navigate('/login')
+    }
 
     function setupEdit(blog: IBlogJOIN) {
         setSelectedBlog(blog)

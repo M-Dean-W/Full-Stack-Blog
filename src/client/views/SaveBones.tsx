@@ -6,6 +6,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { fetchData } from '../services/fetchData';
 import { Button, Form, Container, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 
 interface SaveBonesProps { }
@@ -14,6 +15,13 @@ interface SaveBonesProps { }
 const stripePromise = loadStripe('pk_test_51P1yJ0KbzOjcZzb45kwOIrzO7tY6HHXyviOyyKRl5WImbe5ivKGC3KqxkRij1Rv6Jyy8pQGSyH4bbkOaEgxllqOf00Gfn656Bi');
 
 const SaveBones = (props: SaveBonesProps) => {
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+
+    if (!token) {
+        navigate('/login')
+    }
+
     const [donation, setDonation] = useState({
         amount: '',
         show: true,

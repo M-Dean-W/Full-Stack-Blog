@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { fetchData } from '../services/fetchData';
 import { IEmail } from '../types';
+import { useNavigate } from 'react-router-dom';
 
 
 interface ContactMeProps { }
@@ -14,6 +15,12 @@ const ContactMe = (props: ContactMeProps) => {
     const [content, setContent] = useState('');
     const [email, setEmail] = useState('')
     const [subject, setSubject] = useState('')
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+
+    if (!token) {
+        navigate('/login')
+    }
 
 
     const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
