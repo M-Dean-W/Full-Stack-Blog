@@ -24,7 +24,7 @@ const Register = (props: RegisterProps) => {
    
     return (
         <Container>
-           <Card className="m-3">
+           <Card className="m-3 bg-primary">
             <Card.Body>
                 <Card.Title>Register a new Book Account</Card.Title>
                 <Form onSubmit={handleSubmit}>
