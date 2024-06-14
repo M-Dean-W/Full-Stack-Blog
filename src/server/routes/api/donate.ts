@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import Stripe from 'stripe';
-import config from '../config';
-import tokenCheck from '../middleware/tokenCheck';
+import config from '../../config';
+import tokenCheck from '../../middleware/tokenCheck';
 
 const stripe = new Stripe(config.stripe.apiKey, {
     apiVersion: '2023-10-16',

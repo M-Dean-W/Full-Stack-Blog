@@ -1,8 +1,8 @@
 import { Router } from 'express'
 import Mailgun from 'mailgun.js';
 import FormData from 'form-data';
-import config from '../config';
-import tokenCheck from '../middleware/tokenCheck';
+import config from '../../config';
+import tokenCheck from '../../middleware/tokenCheck';
 
 const mailgun = new Mailgun(FormData).client({
     username:'api',

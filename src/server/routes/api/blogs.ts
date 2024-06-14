@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import db from '../db';
-import insertBlog_tags from '../services/insertBlog_tags';
-import tokenCheck from '../middleware/tokenCheck';
+import db from '../../db';
+import insertBlog_tags from '../../services/insertBlog_tags';
+import tokenCheck from '../../middleware/tokenCheck';
 
 const router = Router();
 
