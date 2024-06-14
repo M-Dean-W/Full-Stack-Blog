@@ -1,18 +1,10 @@
-import { Router } from 'express'
-import blogsRouter from './blogs'
-import authorsRouter from './authors'
-import emailRouter from './email'
-import donateRouter from './donate'
-import loginRouter from './login'
-import registerRouter from './register'
+import Router from 'express'
+import apiRouter from './api'
+import authRouter from './auth'
 
 const router = Router()
 
-router.use('/blogs', blogsRouter)
-router.use('/authors', authorsRouter)
-router.use('/email', emailRouter)
-router.use('/donate', donateRouter)
-router.use('/login', loginRouter )
-router.use('/register', registerRouter)
+router.use('/api', apiRouter)
+router.use('/auth', authRouter)
 
-export default router;
+export default router

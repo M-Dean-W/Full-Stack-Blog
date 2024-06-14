@@ -1,8 +1,8 @@
 import Router from 'express'
-import db from '../db'
-import { compareHash } from '../services/passwords'
+import db from '../../db'
+import { compareHash } from '../../services/passwords'
 import * as jwt from 'jsonwebtoken'
-import config from '../config'
+import config from '../../config'
 
 const router = Router()
 

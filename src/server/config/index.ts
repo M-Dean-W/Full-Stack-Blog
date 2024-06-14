@@ -20,8 +20,7 @@ const stripe = {
 }
 
 const jwt = {
-    secret: process.env.JWT_SECRET as string,
-    expiration: process.env.JWT_EXPIRATION,
+    secret: process.env.JWT_SECRET as string
 };
 
 function hasUndefinedValues(configObj: { [key: string]: string | undefined }) {
