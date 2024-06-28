@@ -1,4 +1,4 @@
-# TypeScript React Express ESBuild Boilerplate
+# MY BLOGS LAB
 
 Welcome to the TypeScript React Express ESBuild boilerplate, tailored for budding developers learning to craft MERN CRUD applications. However, this boilerplate is also ideal for anyone aiming to switch gears and utilize ESBuild over the conventional webpack.
 
